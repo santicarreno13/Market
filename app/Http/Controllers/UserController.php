@@ -9,34 +9,54 @@ use App\Http\Requests\User\UpdateUserRequest;
 
 class UserController extends Controller
 {
-    public function getAllUsers(){
+    
+
+    public function showAllUsers()
+    {
+      
+        $users = $this->getAllUsers()->original['users'];
+        return view('users.index', compact('users'));
+    }
+    
+    public function showCreateUser()
+    {
+
+        return view('users.create-user');
+
+    }
+    public function getAllUsers()
+    {
       
         $users = User::get();
         return response()->json(['users' => $users],200);
 
     }
 
-    public function getAllUsersWithLends(){
+    public function getAllUsersWithLends()
+    {
       
         $users = User::with('CustomerLends.Book')/*->has('CustomerLends.Book')*/->get();
         return response()->json(['users' => $users],200);;
 
     }
 
-    public function getAllLendsByUser(User $user){
+    public function getAllLendsByUser(User $user)
+    {
       
         $CustomerLends = $user->load('CustomerLends.Book.Category','CustomerLends.Book.Author')->CustomerLends;
         return response()->json(['customer_lends' => $CustomerLends],200);
 
     }
 
-    public function getAnUser(User $user){
+    public function getAnUser(User $user)
+    {
 
         return response()->json(['users' => $user],200);
 
     }
 
-    public function createUser(CreateUserRequest $request){
+    public function createUser(CreateUserRequest $request)
+    {
 
         $user = new User($request->all());
         $user->save();
@@ -44,17 +64,17 @@ class UserController extends Controller
 
     }
 
-    public function updateUsers(User $user, UpdateUserRequest $request){
+    public function updateUsers(User $user, UpdateUserRequest $request)
+    {
 
-        
         $user->update($request->all());
         return response()->json(['user' => $user->refresh()],201);
 
     }
 
-    public function deleteUsers(User $user){
+    public function deleteUsers(User $user)
+    {
 
-     
         $user->delete();
         return response()->json([],204);
 

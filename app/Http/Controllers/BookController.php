@@ -12,6 +12,13 @@ use App\Http\Requests\Book\UpdateBookRequest;
 class BookController extends Controller
 {
 
+    public function showHomeWithBooks()
+    {
+        $books = $this->getAllBooks()->original['books'];
+        
+        return view('index', compact('books'));
+    }
+
     public function getAllBooks(){
       
         $books = Book::get();
