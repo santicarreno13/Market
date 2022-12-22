@@ -19,8 +19,8 @@ Route::group(['prefix' => 'Users', 'controller' => UserController::class], funct
    
 
     Route::post('/CreateUser', 'createUser');//->POST crea data
-    Route::put('/UpdateUser/{user}', 'updateUsers');//->PUT actualza data
-    Route::delete('/DeleteUser/{user}', 'deleteUsers');//->DELETE elimina data
+    Route::put('/UpdateUser/{user}', 'updateUser');//->PUT actualza data
+    Route::delete('/DeleteUser/{user}', 'deleteUser');//->DELETE elimina data
 
 });
 
