@@ -1,0 +1,68 @@
+<template> 
+    <div class="card mx-5 my-5">
+        <div class="card-header d-flex justify-content-between">
+            <h2>Libros</h2>
+            <button @click="openModal" ="btn btn-primary">
+                Crear Libro
+            </button>
+        </div>
+
+        <div class="card-body">
+            <section class="table-responsive" v-if="load">
+                <table-component :books_data="books"/>
+            </section>
+
+                <!-- Loading -->
+            <section v-else class="d-flex justify-content-center my-3 ">
+                <div class="spinner-grow text-info" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </section>
+        </div>
+        <section>
+            <modal />
+
+        </section>
+    </div>
+</template>
+
+<script>
+
+    import TableComponent from './Table.vue'
+    import Modal from './Modal.vue'
+export default {
+
+    // props:[], // pasar variables entre componentes
+    components:{
+    TableComponent,
+    Modal
+}, 
+    data() {
+        return{
+            books:[],
+            load: false
+        }
+    },
+    created(){
+        this.index()
+    },
+    methods: {
+        async index(){
+            await this.getBooks()
+        },
+        async getBooks(){
+            try {  
+                const { data } = await axios.get('/api/Books/GetAllBooks')
+                this.books = data.books
+                this.load = true
+                console.log(data.books)
+            }catch (error) {
+                console.log(error);
+            }
+        },
+        openModal(){
+            
+        }
+    }
+}
+</script>

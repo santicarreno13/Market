@@ -22,6 +22,17 @@ Route::group(['prefix' => 'Users','controller' => UserController::class], functi
     Route::delete('/DeleteUser/{user}','deleteUser')->name('user.delete');
 });
 
+// Books
+Route::group(['prefix' => 'Books','controller' => BookController::class], function(){
+  Route::get('/','showBooks')->name('books');
+  // Route::get('/CreateUser','showCreateUser')->name('user.create');
+  // Route::get('/EditUser/{user}','showEditUser')->name('user.edit');
+
+  // Route::post('/CreateUser','createUser')->name('user.create.post');
+  // Route::put('/EditUser/{user}','updateUser')->name('user.edit.put');
+  // Route::delete('/DeleteUser/{user}','deleteUser')->name('user.delete');
+});
+
 Route::group(['controller' => LoginController::class], function(){
 
   // Login Routes..
