@@ -54,6 +54,7 @@ export default {
         },
         async getBooks(){
             try {  
+                this.load = false
                 const { data } = await axios.get('/api/Books/GetAllBooks')
                 this.books = data.books
                 this.load = true
@@ -70,7 +71,17 @@ export default {
                 keyboard: false
             })
             this.modal.show();
+            // Para limpiar utilizar un evento
+            const modal = document.getElementById('book_modal');
+            modal.addEventListener('hidden.bs.modal', () => {
+            this.load_modal = false
+            })
+
         }, 200);
+        },
+        closeModal(){
+            this.modal.hide()
+            this.getBooks()
         }
     }
 }

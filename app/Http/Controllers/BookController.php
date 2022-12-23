@@ -56,9 +56,15 @@ class BookController extends Controller
 
     public function deleteBooks(Book $book){
 
-     
         $book->delete();
         return response()->json([],204);
 
+    }
+
+    public function saveBook(Request $request){
+
+        $book = new Book($request->all());
+        $book->save();
+        return response()->json(['book' => $book ],204);
     }
 }

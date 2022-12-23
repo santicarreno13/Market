@@ -58,6 +58,9 @@ Route::group(['prefix' => 'Books', 'controller' => BookController::class], funct
     Route::get('/GetAllBooks', 'getAllBooks')->name('books');//->GET trae data
     Route::get('/GetAnBook/{book}', 'getAnBook');//->GET trae data por id
     Route::post('/CreateBook', 'createBook');//->POST crea data
+
+    Route::post('/SaveBook', 'saveBook');//->POST crea data
+
     Route::put('/UpdateBooks/{book}', 'updateBooks');//->PUT actualza data
     Route::delete('/DeleteBooks/{book}', 'deleteBooks');//->DELETE elimina data
 
