@@ -27,8 +27,15 @@ class BookController extends Controller
 
     public function getAllBooks(){
       
-        $books = Book::with('Author')->get();
+        $books = Book::with('Author')->get(); //With funciona mientras hace una consulta
         return response()->json(['books' => $books],200);
+
+    }
+
+    public function getABook(Book $book){
+      
+        $book->load('Author','Category'); //Load funciona despues de haber echo una consulta
+        return response()->json(['book' => $book],200);
 
     }
 
@@ -61,10 +68,16 @@ class BookController extends Controller
 
     }
 
-    public function saveBook(Request $request){
+    public function saveBook(Request $request)
+	{
+		$book = new Book($request->all());
+		$book->save();
+		return response()->json(['book' => $book->load('Author', 'Category')], 201);
+	}
 
-        $book = new Book($request->all());
-        $book->save();
-        return response()->json(['book' => $book ],204);
+    public function updateBook(Book $book, Request $request){
+
+        $book->update($request->all());
+        return response()->json(['book' => $book->refresh()->load('Author','Category')],201);
     }
 }

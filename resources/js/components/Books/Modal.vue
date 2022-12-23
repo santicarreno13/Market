@@ -56,6 +56,7 @@
 
 <script>
 export default {
+  props: ['book_data'],
   data() {
     return {
       is_create: true,
@@ -71,21 +72,27 @@ export default {
     index() {
       this.getCategories()
       this.getAuthors()
+      this.setBook()
+    },
+    setBook(){
+      if (!this.book_data) return
+      this.book = { ...this.book_data }
+      this.is_create = false
     },
     async getCategories() {
-      const { data } = await axios.get('/api/Categories/GetAllCategories')
+      const { data } = await axios.get('Categories/GetAllCategories')
       this.categories = data.categories
     },
     async getAuthors() {
-      const { data } = await axios.get('/api/Authors/GetAllAuthors')
+      const { data } = await axios.get('Authors/GetAllAuthors')
       this.authors = data.authors
     },
     async storeBook() {
       try {
         if (this.is_create) {
-          await axios.post('api/Books/SaveBook', this.book)
+          await axios.post('Books/SaveBook', this.book)
         } else {
-          await axios.put(`api/Books/UpdateBook/${this.book.id}`, this.book)
+          await axios.put(`Books/UpdateBook/${this.book.id}`, this.book)
         }
         swal.fire({
           icon: 'success',

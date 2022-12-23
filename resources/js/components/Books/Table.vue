@@ -14,7 +14,7 @@
                         <td>{{book.author.name }}</td>
                         <td>{{book.stock }}</td>
                         <td>
-                            <button class="btn btn-warning me-2">Editar</button>
+                            <button class="btn btn-warning me-2" @click="getBook(book.id)">Editar</button>
                             <button class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>
@@ -38,6 +38,15 @@ export default {
     methods: {
         index(){
           this.books = [...this.books_data]  
+        },
+        async getBook(book_id){
+            try {
+                   const { data }  = await axios.get(`Books/GetABook/${book_id}`) 
+                 this.$parent.editBook(data.book)  
+            } catch (error) {
+                console.error(error)
+            }
+           
         }
     }
 }

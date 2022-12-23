@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
-use App\Http\Controllers\UserController;
 
 Route::get('/', [BookController::class, 'showHomeWithBooks'])->name('home');
 
@@ -25,12 +27,32 @@ Route::group(['prefix' => 'Users','controller' => UserController::class], functi
 // Books
 Route::group(['prefix' => 'Books','controller' => BookController::class], function(){
   Route::get('/','showBooks')->name('books');
-  // Route::get('/CreateUser','showCreateUser')->name('user.create');
-  // Route::get('/EditUser/{user}','showEditUser')->name('user.edit');
+  Route::post('/SaveBook', 'saveBook');//->POST crea data
+  Route::get('/GetAllBooks', 'getAllBooks');//->GET trae data
+  Route::get('/GetABook/{book}', 'getABook');
+  Route::put('/UpdateBook/{book}', 'updateBook');
+});
 
-  // Route::post('/CreateUser','createUser')->name('user.create.post');
-  // Route::put('/EditUser/{user}','updateUser')->name('user.edit.put');
-  // Route::delete('/DeleteUser/{user}','deleteUser')->name('user.delete');
+//Rutas Categories
+Route::group(['prefix' => 'Categories', 'controller' => CategorieController::class], function(){
+  Route::get('/GetAllCategories', 'getAllCategories');//->GET trae data
+  // Route::get('/GetAnCategorie/{categorie}', 'getAnCategorie');//->GET trae data por id
+  // Route::post('/CreateCategorie', 'createCategorie');//->POST crea data
+  // Route::put('/UpdateCategories/{categorie}', 'updateCategories');//->PUT actualza data
+  // Route::delete('/DeleteCategories/{categorie}', 'deleteCategories');//->DELETE elimina data
+
+
+});
+
+//Rutas Authors
+Route::group(['prefix' => 'Authors', 'controller' => AuthorController::class], function(){
+  Route::get('/GetAllAuthors', 'getAllAuthors');//->GET trae data
+  // Route::get('/GetAnAuthor/{author}', 'getAnAuthor');//->GET trae data por id
+  // Route::post('/CreateAuthor', 'createAuthor');//->POST crea data
+  // Route::put('/UpdateAuthors/{author}', 'updateAuthors');//->PUT actualza data
+  // Route::delete('/DeleteAuthors/{author}', 'deleteAuthors');//->DELETE elimina data
+
+
 });
 
 Route::group(['controller' => LoginController::class], function(){

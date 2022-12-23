@@ -20,7 +20,7 @@
             </section>
         </div>
         <section v-if="load_modal">
-            <modal />
+            <modal :book_data="book"/>
 
         </section>
     </div>
@@ -42,7 +42,8 @@ export default {
             books:[],
             load: false,
             load_modal: false,
-            modal:null
+            modal:null,
+            book: null
         }
     },
     created(){
@@ -55,17 +56,15 @@ export default {
         async getBooks(){
             try {  
                 this.load = false
-                const { data } = await axios.get('/api/Books/GetAllBooks')
+                const { data } = await axios.get('Books/GetAllBooks')
                 this.books = data.books
                 this.load = true
-                console.log(data.books)
             }catch (error) {
-                console.log(error);
+                console.log(error)
             }
         },
         openModal(){
-            this.load_modal = true;
-
+            this.load_modal = true
         setTimeout(() => {
             this.modal = new bootstrap.Modal(document.getElementById('book_modal'),{
                 keyboard: false
@@ -75,6 +74,7 @@ export default {
             const modal = document.getElementById('book_modal');
             modal.addEventListener('hidden.bs.modal', () => {
             this.load_modal = false
+            this.book = null
             })
 
         }, 200);
@@ -82,7 +82,11 @@ export default {
         closeModal(){
             this.modal.hide()
             this.getBooks()
-        }
+        },
+        editBook(book) {
+				this.book = book
+				this.openModal()
+			}
     }
 }
 </script>
