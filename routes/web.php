@@ -30,7 +30,8 @@ Route::group(['prefix' => 'Books','controller' => BookController::class], functi
   Route::post('/SaveBook', 'saveBook');//->POST crea data
   Route::get('/GetAllBooks', 'getAllBooks');//->GET trae data
   Route::get('/GetABook/{book}', 'getABook');
-  Route::put('/UpdateBook/{book}', 'updateBook');
+  Route::post('/UpdateBook/{book}', 'updateBook');
+  Route::delete('/DeleteABook/{book}', 'deleteBook');
 });
 
 //Rutas Categories

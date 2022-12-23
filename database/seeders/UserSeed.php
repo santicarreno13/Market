@@ -16,10 +16,10 @@ class UserSeed extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'number_id' => '1031643005',
-            'name' => 'Diego',
-            'last_name' => 'Parra',
-            'email' => 'parracalderond9@gmail.com',
+            'number_id' => '1023302510',
+            'name' => 'Santiago ',
+            'last_name' => 'Carreño',
+            'email' => 'santiagoestebancmc@gmail.com',
             'password' => bcrypt(123456789),
         ]);
     }
