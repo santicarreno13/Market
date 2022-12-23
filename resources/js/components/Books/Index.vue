@@ -2,7 +2,7 @@
     <div class="card mx-5 my-5">
         <div class="card-header d-flex justify-content-between">
             <h2>Libros</h2>
-            <button @click="openModal" ="btn btn-primary">
+            <button @click="openModal" class="btn btn-primary">
                 Crear Libro
             </button>
         </div>
@@ -19,7 +19,7 @@
                 </div>
             </section>
         </div>
-        <section>
+        <section v-if="load_modal">
             <modal />
 
         </section>
@@ -40,7 +40,9 @@ export default {
     data() {
         return{
             books:[],
-            load: false
+            load: false,
+            load_modal: false,
+            modal:null
         }
     },
     created(){
@@ -61,7 +63,14 @@ export default {
             }
         },
         openModal(){
-            
+            this.load_modal = true;
+
+        setTimeout(() => {
+            this.modal = new bootstrap.Modal(document.getElementById('book_modal'),{
+                keyboard: false
+            })
+            this.modal.show();
+        }, 200);
         }
     }
 }
