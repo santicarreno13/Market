@@ -51,6 +51,7 @@ Route::group([
     Route::get('/','showBooks')->name('books');
     Route::post('/SaveBook', 'saveBook');//->POST crea data
     Route::get('/GetAllBooks', 'getAllBooks');//->GET trae data
+    Route::get('/GetAllBooksDataTable', 'getAllBooksForDataTable');//->GET trae data
     Route::get('/GetABook/{book}', 'getABook');
     Route::post('/UpdateBook/{book}', 'updateBook');
     Route::delete('/DeleteABook/{book}', 'deleteBook'); 

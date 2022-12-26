@@ -1,23 +1,14 @@
 <template>
-  <table class="table table-dark table-striped">
+  <table class="table table-dark table-striped" id="bookTable" @click="getEvent">
                 <thead>
                     <tr>
                         <th >Titulo</th>
-                        <th >Autor</th>
+                        <th >Autor</th> 
                         <th >Stock</th>
                         <th >Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(book, index) in books" :key="index">
-                        <th>{{book.title}}</th>
-                        <td>{{book.author.name }}</td>
-                        <td>{{book.stock }}</td>
-                        <td>
-                            <button class="btn btn-warning me-2" @click="getBook(book)">Editar</button>
-                            <button class="btn btn-danger" @click="deleteBook(book)">Eliminar</button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
 </template>
@@ -26,31 +17,68 @@
 
 export default {
 
-    props:['books_data'], // pasar variables entre componentes
     data() {
         return{
-            books: []
+            books: [],
+            datatable: {}
         }
     },
-    created(){
+    mounted(){
         this.index()
     },
+    
     methods: {
-        index(){
-          this.books = [...this.books_data]  
+        async index(){
+            this.mountDataTable(); 
         },
-        async getBook(book){
+        mountDataTable(){
+            $('#bookTable').DataTable({
+                processing: true,
+				serverSide: true,
+				ajax: {
+					url: '/Books/GetAllBooksDataTable'
+					},
+					columns: [
+						{ data: 'title' },
+						{ data: 'author.name', searchable: false },
+						{ data: 'stock' },
+						{ data: 'action' }
+					]
+            })
+        },
+        async getBooks(){
+            try {  
+                this.load = false
+                const { data } = await axios.get('Books/GetAllBooks')
+                this.books = data.books
+                this.load = true
+                this.index()
+            }catch (error) {
+                console.log(error)
+            } 
+            this.mountDataTable()
+        },
+           
+        getEvent(event){
+            const button = event.target
+				if (button.getAttribute('role') == 'edit') {
+					this.getBook(button.getAttribute('data-id'))
+				}
+				if (button.getAttribute('role') == 'delete') {
+					this.deletBook(button.getAttribute('data-id'))
+				}
+        },
+        async getBook(book_id){
             try {
-                //    const { data }  = await axios.get(`Books/GetABook/${book.id}`) 
-                 this.$parent.editBook(book)  
+                const { data }  = await axios.get(`Books/GetABook/${book_id}`) 
+                this.$parent.editBook(data.book)  
             } catch (error) {
                 console.error(error)
-            }
-           
+            } 
         },
-        async deleteBook(book) {
-            try {
 
+        async deleteBook(book_id) {
+            try {
                 const result = await swal.fire({
                     icon: 'info',
                     title: 'Quieres eliminar el libro?',
@@ -59,9 +87,9 @@ export default {
                 })
 
                 if (!result.isConfirmed) return
-
-                await axios.delete(`Books/DeleteABook/${book.id}`)
-                this.$parent.getBooks()
+                this.datatable.destroy()
+                await axios.delete(`Books/DeleteABook/${book_id}`)
+                this.index();
                 swal.fire({
                     icon: 'success',
                     title: 'Bien ;)!',
@@ -70,7 +98,6 @@ export default {
             } catch (error) {
                 console.error(error)
             }
-
         }
     }
 }
