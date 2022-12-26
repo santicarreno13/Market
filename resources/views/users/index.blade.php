@@ -16,7 +16,7 @@
 
 
 
-            <table class="table my-4 mx-3">
+            <table class="table table-dark table-striped my-4 mx-3">
                 <thead>
                     <tr>
                         <th scope="col">CC</th>

@@ -10,7 +10,7 @@
                 <form action="{{route('user.edit.put',['user' => $user->id])}}" method="POST">
                     @csrf              <!--  para enviar un token  -->
                     @method('PUT') 
-                    <x-user.form-user :user="$user"/>
+                    <x-user.form-user :user="$user" :roles="$roles"/>
                 </form>
             </div>
         </div>

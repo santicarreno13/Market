@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
@@ -11,10 +13,27 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 
+
+Route::get('/test',function (){
+  
+  // Para la asigniacion de roles de todos los users menos el primero que es admin
+  // $users = User::get();
+  // foreach( $users as $user){
+  //     if ($user->number_id == 1023302510) $user->assignRole('admin');
+  //     else $user->assignRole('user');
+  // } 
+  //Creacion de roles...
+  // Role::create(['name' => 'user']);
+  // return Role::all()->pluck('name');
+});
+
 Route::get('/', [BookController::class, 'showHomeWithBooks'])->name('home');
 
 // Users
-Route::group(['prefix' => 'Users','controller' => UserController::class], function(){
+Route::group([
+  'prefix' => 'Users', 'middlware' => ['auth','role:admin'],
+  'controller' => UserController::class], 
+  function(){
     Route::get('/','showAllUsers')->name('users');
     Route::get('/CreateUser','showCreateUser')->name('user.create');
     Route::get('/EditUser/{user}','showEditUser')->name('user.edit');
@@ -25,13 +44,16 @@ Route::group(['prefix' => 'Users','controller' => UserController::class], functi
 });
 
 // Books
-Route::group(['prefix' => 'Books','controller' => BookController::class], function(){
-  Route::get('/','showBooks')->name('books');
-  Route::post('/SaveBook', 'saveBook');//->POST crea data
-  Route::get('/GetAllBooks', 'getAllBooks');//->GET trae data
-  Route::get('/GetABook/{book}', 'getABook');
-  Route::post('/UpdateBook/{book}', 'updateBook');
-  Route::delete('/DeleteABook/{book}', 'deleteBook');
+Route::group([
+  'prefix' => 'Books','middlware' => ['auth','role:admin'],
+  'controller' => BookController::class], function(){
+
+    Route::get('/','showBooks')->name('books');
+    Route::post('/SaveBook', 'saveBook');//->POST crea data
+    Route::get('/GetAllBooks', 'getAllBooks');//->GET trae data
+    Route::get('/GetABook/{book}', 'getABook');
+    Route::post('/UpdateBook/{book}', 'updateBook');
+    Route::delete('/DeleteABook/{book}', 'deleteBook'); 
 });
 
 //Rutas Categories
