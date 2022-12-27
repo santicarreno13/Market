@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade" id="book_modal" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="product_modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="storeBook" enctype="multipart/form-data">
+          <form @submit.prevent="storeProduct" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="images" class="form-label">Imagen</label>
               <input type="file" class="form-control" id="file" accept="imgae/*" @change="loadImage">
@@ -15,29 +15,21 @@
 
             <div class="mb-3">
               <label for="title" class="form-label">Titulo</label>
-              <input type="text" class="form-control" id="title" v-model="book.title">
+              <input type="text" class="form-control" id="title" v-model="product.title">
             </div>
 
             <div class="mb-3">
               <label for="stock" class="form-label">Stock</label>
-              <input type="number" class="form-control" id="title" v-model="book.stock">
+              <input type="number" class="form-control" id="title" v-model="product.stock">
             </div>
             <div class="mb-3">
               <label for="description" class="form-label">Descripcion</label>
-              <textarea class="form-control" id="description" rows="3" v-model="book.description"></textarea>
+              <textarea class="form-control" id="description" rows="3" v-model="product.description"></textarea>
             </div>
 
             <div class="mb-3">
               <label for="category" class="form-label">Categorias</label>
-              <v-select id="category" :options="categories" v-model="book.category_id" :reduce="category => category.id"
-                label="name" :clearble="false">
-              </v-select>
-            </div>
-
-
-            <div class="mb-3">
-              <label for="author" class="form-label">Autor</label>
-              <v-select id="author" :options="authors" v-model="book.author_id" :reduce="author => author.id"
+              <v-select id="category" :options="categories" v-model="product.category_id" :reduce="category => category.id"
                 label="name" :clearble="false">
               </v-select>
             </div>
@@ -61,13 +53,12 @@
 
 <script>
 export default {
-  props: ['book_data'],
+  props: ['product_data'],
   data() {
     return {
       is_create: true,
       categories: [],
-      authors: [],
-      book: {},
+      product: {},
       file: null
     }
   },
@@ -77,13 +68,12 @@ export default {
   methods: {
     index() {
       this.getCategories()
-      this.getAuthors()
-      this.setBook()
+      this.setProduct()
     },
 
-    setBook(){
-      if (!this.book_data) return
-      this.book = { ...this.book_data }
+    setProduct(){
+      if (!this.product_data) return
+      this.product = { ...this.product_data }
       this.is_create = false
     },
 
@@ -94,11 +84,10 @@ export default {
     loadFormData(){
       const form_data = new FormData()
       if(this.file) form_data.append('image', this.file , this.file.name)
-      form_data.append('title', this.book.title);
-      form_data.append('stock', this.book.stock);
-      form_data.append('description', this.book.description);
-      form_data.append('category_id', this.book.category_id);
-      form_data.append('author_id', this.book.author_id);
+      form_data.append('title', this.product.title);
+      form_data.append('stock', this.product.stock);
+      form_data.append('description', this.product.description);
+      form_data.append('category_id', this.product.category_id);
       return form_data;
     },
 
@@ -107,18 +96,13 @@ export default {
       this.categories = data.categories
     },
 
-    async getAuthors() {
-      const { data } = await axios.get('Authors/GetAllAuthors')
-      this.authors = data.authors
-    },
-
-    async storeBook() {
+    async storeProduct() {
       try {
-        const book = this.loadFormData()
+        const product = this.loadFormData()
         if (this.is_create) {
-          await axios.post('Books/SaveBook', book)
+          await axios.post('Products/SaveProduct', product)
         } else {
-          await axios.post(`Books/UpdateBook/${this.book.id}`, book)
+          await axios.post(`Products/UpdateProduct/${this.product.id}`, product)
         }
         swal.fire({
           icon: 'success',

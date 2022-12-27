@@ -3,7 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Lend;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -56,14 +55,5 @@ class User extends Authenticatable
 
     // Relations --------------------------------------------------------------------------------
 
-    public function CustomerLends()
-    {
-        return $this->hasMany(Lend::class, 'customer_user_id', 'id');
-    }
-
-    public function OwnerLends()
-    {
-        return $this->hasMany(Lend::class, 'owner_user_id', 'id');
-    }
     
 }

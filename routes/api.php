@@ -2,10 +2,9 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LendController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategorieController;
 
 // Rutas User
@@ -25,21 +24,11 @@ Route::group(['prefix' => 'Users', 'controller' => UserController::class], funct
 });
 
 //Rutas Lend
-Route::group(['prefix' => 'Lends', 'controller' => LendController::class], function(){
-    Route::post('/CreateLend', 'createLend');
+// Route::group(['prefix' => 'Lends', 'controller' => LendController::class], function(){
+//     Route::post('/CreateLend', 'createLend');
 
-});
+// });
 
-//Rutas Authors
-Route::group(['prefix' => 'Authors', 'controller' => AuthorController::class], function(){
-    Route::get('/GetAllAuthors', 'getAllAuthors');//->GET trae data
-    Route::get('/GetAnAuthor/{author}', 'getAnAuthor');//->GET trae data por id
-    Route::post('/CreateAuthor', 'createAuthor');//->POST crea data
-    Route::put('/UpdateAuthors/{author}', 'updateAuthors');//->PUT actualza data
-    Route::delete('/DeleteAuthors/{author}', 'deleteAuthors');//->DELETE elimina data
-
-
-});
 
 //Rutas Categories
 Route::group(['prefix' => 'Categories', 'controller' => CategorieController::class], function(){
@@ -52,17 +41,17 @@ Route::group(['prefix' => 'Categories', 'controller' => CategorieController::cla
 
 });
 
-//Rutas Books
-Route::group(['prefix' => 'Books', 'controller' => BookController::class], function(){
-    Route::get('/GetAllBooks', 'getAllBooks');//->GET trae data
-    Route::get('/GetAllBooks', 'getAllBooks')->name('books');//->GET trae data
-    Route::get('/GetAnBook/{book}', 'getAnBook');//->GET trae data por id
-    Route::post('/CreateBook', 'createBook');//->POST crea data
+//Rutas Products
+Route::group(['prefix' => 'Products', 'controller' => ProductController::class], function(){
+    Route::get('/GetAllProducts', 'getAllProducts');//->GET trae data
+    Route::get('/GetAllProducts', 'getAllProducts')->name('products');//->GET trae data
+    Route::get('/GetAnProduct/{product}', 'getAnProduct');//->GET trae data por id
+    Route::post('/CreateProduct', 'createProduct');//->POST crea data
 
-    Route::post('/SaveBook', 'saveBook');//->POST crea data
+    Route::post('/SaveProduct', 'saveProduct');//->POST crea data
 
-    Route::put('/UpdateBooks/{book}', 'updateBooks');//->PUT actualza data
-    Route::delete('/DeleteBooks/{book}', 'deleteBooks');//->DELETE elimina data
+    Route::put('/UpdateProducts/{product}', 'updateProducts');//->PUT actualza data
+    Route::delete('/DeleteProducts/{product}', 'deleteProducts');//->DELETE elimina data
 
 
 });

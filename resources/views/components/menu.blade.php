@@ -1,7 +1,7 @@
 {{-- Menu --}}
  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Biblioteca</a>
+        <a class="navbar-brand" href="{{ url('/') }}">Tienda</a>
 
         {{-- Hamburguesa --}}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -40,8 +40,8 @@
                             {{-- Users --}}
                             <a class="dropdown-item" href="{{ route('users') }}">Usuarios</a>
 
-                            {{-- Books --}}
-                            <a class="dropdown-item" href="{{ route('books') }}">Libros</a>
+                            {{-- products --}}
+                            <a class="dropdown-item" href="{{ route('products') }}">Productos</a>
 
                             @endrole
                             {{-- Logout --}}

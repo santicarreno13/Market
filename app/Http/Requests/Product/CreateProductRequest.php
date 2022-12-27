@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Book;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBookRequest extends FormRequest
+class CreateProductRequest extends FormRequest
 {
    
     public function authorize()
@@ -18,7 +18,6 @@ class CreateBookRequest extends FormRequest
      {
          return [
              'category_id' => ['required'],
-             'author_id' => ['required'],
              'title' => ['required','string'],     
              'stock' => ['required','numeric'],  
              'description' => ['required','string','min:20'],        
@@ -29,9 +28,6 @@ class CreateBookRequest extends FormRequest
  
          return [
              'category_id.required' => 'La categoria es requerida.',
- 
-             'author_id.required' => 'El autor es requerido.',
-
  
              'title.required' => 'El titulo es requerido.',
              'title.string' => 'titulo no valido.',

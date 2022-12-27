@@ -1,5 +1,5 @@
 <x-app>
     <section class="container">
-        <books-list/>
+        <products-list/>
     </section>
 </x-app>

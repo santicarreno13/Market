@@ -13,7 +13,7 @@
             
         </div>
         <section v-if="load_modal">
-            <modal :book_data="book"/>
+            <modal :product_data="product"/>
 
         </section>
     </div>
@@ -34,7 +34,7 @@ export default {
         return{
             load_modal: false,
             modal:null,
-            book: null
+            product: null
         }
     },
 
@@ -43,15 +43,15 @@ export default {
         openModal(){
             this.load_modal = true
         setTimeout(() => {
-            this.modal = new bootstrap.Modal(document.getElementById('book_modal'),{
+            this.modal = new bootstrap.Modal(document.getElementById('product_modal'),{
                 keyboard: false
             })
             this.modal.show();
             // Para limpiar utilizar un evento
-            const modal = document.getElementById('book_modal');
+            const modal = document.getElementById('product_modal');
             modal.addEventListener('hidden.bs.modal', () => {
             this.load_modal = false
-            this.book = null
+            this.product = null
             })
 
         }, 200);
@@ -61,8 +61,8 @@ export default {
             this.$refs.table.datatable.destroy()
             this.modal.hide()
         },
-        editBook(book) {
-				this.book = book
+        editProduct(product) {
+				this.product = product
 				this.openModal()
 		}
     }

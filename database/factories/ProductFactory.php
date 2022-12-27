@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Book;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class BookFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,14 +16,7 @@ class BookFactory extends Factory
      * @return array<string, mixed>
      */
 
-    protected $model = Book::class;
-
-    public function authorId($author)
-    {
-        return $this->state([
-            'author_id' => $author->id,
-        ]);
-    }
+    protected $model = Product::class;
 
     public function definition()
     {

@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-dark table-striped" id="bookTable" @click="getEvent">
+  <table class="table table-dark table-striped" id="productTable" @click="getEvent">
                 <thead>
                     <tr>
                         <th >Titulo</th>
@@ -19,7 +19,7 @@ export default {
 
     data() {
         return{
-            books: [],
+            products: [],
             datatable: {}
         }
     },
@@ -32,25 +32,24 @@ export default {
             this.mountDataTable(); 
         },
         mountDataTable(){
-            $('#bookTable').DataTable({
+            $('#productTable').DataTable({
                 processing: true,
 				serverSide: true,
 				ajax: {
-					url: '/Books/GetAllBooksDataTable'
+					url: '/Products/GetAllProductsDataTable'
 					},
 					columns: [
 						{ data: 'title' },
-						{ data: 'author.name', searchable: false },
 						{ data: 'stock' },
 						{ data: 'action' }
 					]
             })
         },
-        async getBooks(){
+        async getProducts(){
             try {  
                 this.load = false
-                const { data } = await axios.get('Books/GetAllBooks')
-                this.books = data.books
+                const { data } = await axios.get('Products/GetAllProducts')
+                this.products = data.products
                 this.load = true
                 this.index()
             }catch (error) {
@@ -62,22 +61,22 @@ export default {
         getEvent(event){
             const button = event.target
 				if (button.getAttribute('role') == 'edit') {
-					this.getBook(button.getAttribute('data-id'))
+					this.getProduct(button.getAttribute('data-id'))
 				}
 				if (button.getAttribute('role') == 'delete') {
-					this.deletBook(button.getAttribute('data-id'))
+					this.deletProduct(button.getAttribute('data-id'))
 				}
         },
-        async getBook(book_id){
+        async getProduct(product_id){
             try {
-                const { data }  = await axios.get(`Books/GetABook/${book_id}`) 
-                this.$parent.editBook(data.book)  
+                const { data }  = await axios.get(`Products/GetAProduct/${product_id}`) 
+                this.$parent.editProduct(data.product)  
             } catch (error) {
                 console.error(error)
             } 
         },
 
-        async deleteBook(book_id) {
+        async deleteProduct(product_id) {
             try {
                 const result = await swal.fire({
                     icon: 'info',
@@ -88,7 +87,7 @@ export default {
 
                 if (!result.isConfirmed) return
                 this.datatable.destroy()
-                await axios.delete(`Books/DeleteABook/${book_id}`)
+                await axios.delete(`Products/DeleteAProduct/${product_id}`)
                 this.index();
                 swal.fire({
                     icon: 'success',

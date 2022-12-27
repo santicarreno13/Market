@@ -2,10 +2,10 @@
 
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -17,17 +17,17 @@ use App\Http\Controllers\Auth\ConfirmPasswordController;
 Route::get('/test',function (){
   
   // Para la asigniacion de roles de todos los users menos el primero que es admin
-  // $users = User::get();
-  // foreach( $users as $user){
-  //     if ($user->number_id == 1023302510) $user->assignRole('admin');
-  //     else $user->assignRole('user');
-  // } 
+  //  $users = User::get();
+  //  foreach( $users as $user){
+  //      if ($user->number_id == 1023302510) $user->assignRole('admin');
+  //      else $user->assignRole('user');
+  //  } 
   //Creacion de roles...
-  // Role::create(['name' => 'user']);
-  // return Role::all()->pluck('name');
+  //  Role::create(['name' => 'user']);
+  //  return Role::all()->pluck('name');
 });
 
-Route::get('/', [BookController::class, 'showHomeWithBooks'])->name('home');
+Route::get('/', [ProductController::class, 'showHomeWithProducts'])->name('home');
 
 // Users
 Route::group([
@@ -43,18 +43,18 @@ Route::group([
     Route::delete('/DeleteUser/{user}','deleteUser')->name('user.delete');
 });
 
-// Books
+// Products
 Route::group([
-  'prefix' => 'Books','middlware' => ['auth','role:admin'],
-  'controller' => BookController::class], function(){
+  'prefix' => 'Products','middlware' => ['auth','role:admin'],
+  'controller' => ProductController::class], function(){
 
-    Route::get('/','showBooks')->name('books');
-    Route::post('/SaveBook', 'saveBook');//->POST crea data
-    Route::get('/GetAllBooks', 'getAllBooks');//->GET trae data
-    Route::get('/GetAllBooksDataTable', 'getAllBooksForDataTable');//->GET trae data
-    Route::get('/GetABook/{book}', 'getABook');
-    Route::post('/UpdateBook/{book}', 'updateBook');
-    Route::delete('/DeleteABook/{book}', 'deleteBook'); 
+    Route::get('/','showProducts')->name('products');
+    Route::post('/SaveProduct', 'saveProduct');//->POST crea data
+    Route::get('/GetAllProducts', 'getAllProducts');//->GET trae data
+    Route::get('/GetAllProductsDataTable', 'getAllProductsForDataTable');//->GET trae data
+    Route::get('/GetAProduct/{product}', 'getAProduct');
+    Route::post('/UpdateProduct/{product}', 'updateProduct');
+    Route::delete('/DeleteAProduct/{product}', 'deleteProduct'); 
 });
 
 //Rutas Categories
@@ -68,16 +68,6 @@ Route::group(['prefix' => 'Categories', 'controller' => CategorieController::cla
 
 });
 
-//Rutas Authors
-Route::group(['prefix' => 'Authors', 'controller' => AuthorController::class], function(){
-  Route::get('/GetAllAuthors', 'getAllAuthors');//->GET trae data
-  // Route::get('/GetAnAuthor/{author}', 'getAnAuthor');//->GET trae data por id
-  // Route::post('/CreateAuthor', 'createAuthor');//->POST crea data
-  // Route::put('/UpdateAuthors/{author}', 'updateAuthors');//->PUT actualza data
-  // Route::delete('/DeleteAuthors/{author}', 'deleteAuthors');//->DELETE elimina data
-
-
-});
 
 Route::group(['controller' => LoginController::class], function(){
 
@@ -127,3 +117,7 @@ Route::post('email/resend', 'resend')->name('verification.resend');
   });     
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

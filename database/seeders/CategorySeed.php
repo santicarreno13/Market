@@ -18,17 +18,17 @@ class CategorySeed extends Seeder
     {
         //1
         DB::table('categories')->insert([
-            'name'=>'terror',
+            'name'=>'Tecnologia',
         ]);
 
         //2
         DB::table('categories')->insert([
-            'name'=>'Comedia',
+            'name'=>'Jugetes',
         ]);
 
         //3
         DB::table('categories')->insert([
-            'name'=>'Autos',
+            'name'=>'Alimentos',
         ]);
     }
 }

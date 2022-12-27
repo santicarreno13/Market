@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Book;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateBookRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
   
     public function authorize()
@@ -16,7 +16,6 @@ class UpdateBookRequest extends FormRequest
     {
         return [
             'category_id' => ['nullable','required'],
-            'author_id' => ['nullable','required'],
             'title' => ['required','string'],     
             'stock' => ['required','numeric'],  
             'description' => ['required','string','min:20'],        
@@ -27,9 +26,6 @@ class UpdateBookRequest extends FormRequest
 
         return [
             'category_id.required' => 'La categoria es requerida.',
-
-            'author_id.required' => 'El autor es requerido.',
-
 
             'title.required' => 'El titulo es requerido.',
             'title.string' => 'titulo no valido.',
