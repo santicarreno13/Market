@@ -3,7 +3,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\LendController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 
@@ -13,21 +12,13 @@ Route::group(['prefix' => 'Users', 'controller' => UserController::class], funct
     Route::get('/GetAllUsers', 'getAllUsers');//->GET trae data
     Route::get('/GetAnUser/{user}', 'getAnUser');//->GET trae data por id
 
-    Route::get('/GetAllUsersWithLends', 'getAllUsersWithLends');//->GET trae data
-    Route::get('/GetAllLendsByUser/{user}', 'getAllLendsByUser');//->GET trae data por id
-   
-
     Route::post('/CreateUser', 'createUser');//->POST crea data
     Route::put('/UpdateUser/{user}', 'updateUser');//->PUT actualza data
     Route::delete('/DeleteUser/{user}', 'deleteUser');//->DELETE elimina data
 
 });
 
-//Rutas Lend
-// Route::group(['prefix' => 'Lends', 'controller' => LendController::class], function(){
-//     Route::post('/CreateLend', 'createLend');
 
-// });
 
 
 //Rutas Categories
@@ -47,7 +38,7 @@ Route::group(['prefix' => 'Products', 'controller' => ProductController::class],
     Route::get('/GetAllProducts', 'getAllProducts')->name('products');//->GET trae data
     Route::get('/GetAnProduct/{product}', 'getAnProduct');//->GET trae data por id
     Route::post('/CreateProduct', 'createProduct');//->POST crea data
-
+    Route::get('/GetAllProductsDataTable', 'getAllProductsForDataTable');//->GET trae data
     Route::post('/SaveProduct', 'saveProduct');//->POST crea data
 
     Route::put('/UpdateProducts/{product}', 'updateProducts');//->PUT actualza data

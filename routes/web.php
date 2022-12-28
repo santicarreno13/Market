@@ -17,21 +17,21 @@ use App\Http\Controllers\Auth\ConfirmPasswordController;
 Route::get('/test',function (){
   
   // Para la asigniacion de roles de todos los users menos el primero que es admin
-  //  $users = User::get();
-  //  foreach( $users as $user){
-  //      if ($user->number_id == 1023302510) $user->assignRole('admin');
-  //      else $user->assignRole('user');
-  //  } 
+    //  $users = User::get();
+    //  foreach( $users as $user){
+    //      if ($user->number_id == 1023302510) $user->assignRole('admin');
+    //      else $user->assignRole('user');
+    //  } 
   //Creacion de roles...
-  //  Role::create(['name' => 'user']);
-  //  return Role::all()->pluck('name');
+    // Role::create(['name' => 'user']);
+    // return Role::all()->pluck('name');
 });
 
 Route::get('/', [ProductController::class, 'showHomeWithProducts'])->name('home');
 
 // Users
 Route::group([
-  'prefix' => 'Users', 'middlware' => ['auth','role:admin'],
+  'prefix' => 'Users', 'middlware' => ['auth','role:admin|role:user'],
   'controller' => UserController::class], 
   function(){
     Route::get('/','showAllUsers')->name('users');
@@ -45,13 +45,13 @@ Route::group([
 
 // Products
 Route::group([
-  'prefix' => 'Products','middlware' => ['auth','role:admin'],
+  'prefix' => 'Products','middlware' => ['auth','role:admin|role:user'],
   'controller' => ProductController::class], function(){
 
     Route::get('/','showProducts')->name('products');
     Route::post('/SaveProduct', 'saveProduct');//->POST crea data
     Route::get('/GetAllProducts', 'getAllProducts');//->GET trae data
-    Route::get('/GetAllProductsDataTable', 'getAllProductsForDataTable');//->GET trae data
+    Route::get('/GetAllProductsDataTable', 'getAllProductsForDataTable');
     Route::get('/GetAProduct/{product}', 'getAProduct');
     Route::post('/UpdateProduct/{product}', 'updateProduct');
     Route::delete('/DeleteAProduct/{product}', 'deleteProduct'); 

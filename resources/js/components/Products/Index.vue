@@ -1,9 +1,9 @@
 <template> 
     <div class="card mx-5 my-5">
         <div class="card-header d-flex justify-content-between">
-            <h2>Libros</h2>
+            <h2>Producto</h2>
             <button @click="openModal" class="btn btn-primary">
-                Crear Libro
+                Crear Producto
             </button>
         </div>
 
@@ -68,3 +68,4 @@ export default {
     }
 }
 </script>
+

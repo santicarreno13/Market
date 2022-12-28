@@ -49,21 +49,6 @@ class UserController extends Controller
 
     }
 
-    public function getAllUsersWithLends()
-    {
-      
-        $users = User::with('CustomerLends.Product')/*->has('CustomerLends.Product')*/->get();
-        return response()->json(['users' => $users],200);;
-
-    }
-
-    public function getAllLendsByUser(User $user)
-    {
-      
-        $CustomerLends = $user->load('CustomerLends.Product.Category','CustomerLends.Product.Author')->CustomerLends;
-        return response()->json(['customer_lends' => $CustomerLends],200);
-
-    }
 
     public function getAnUser(User $user)
     {

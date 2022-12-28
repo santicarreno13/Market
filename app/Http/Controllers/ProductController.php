@@ -10,8 +10,6 @@ use App\Http\Requests\Product\CreateProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 
 
-
-
 class ProductController extends Controller
 {
 
@@ -23,21 +21,24 @@ class ProductController extends Controller
 
     public function showHomeWithProducts()
     {
+        $products = Product::with('Categories');
         $products = $this->getAllProducts()->original['products'];
-        
         return view('index', compact('products'));
     }
 
-    public function getAllProducts(){
+    public function getAllProducts()
+    {
       
         $products = Product::get(); //With funciona mientras hace una consulta
         return response()->json(['products' => $products],200);
 
     }
 
-    public function getAllProductsForDataTable(){
+    public function getAllProductsForDataTable()
+    {
       
-        $products = Product::with('Author');
+        // $products = Product::get();
+        $products = Product::with('Category');
 		return DataTables::of($products)
 			->addColumn('action', function ($row) {
 				return "<a
@@ -56,20 +57,23 @@ class ProductController extends Controller
 			->rawColumns(['action'])
 			->make();    
     }
-    public function getAProduct(Product $product){
+    public function getAProduct(Product $product)
+    {
       
         $product->load('Category'); //Load funciona despues de haber echo una consulta
         return response()->json(['product' => $product],200);
 
     }
 
-    public function getAnProduct(Product $product){
+    public function getAnProduct(Product $product)
+    {
 
         return response()->json(['product' => $product],200);
 
     }
 
-    public function createProduct(CreateProductRequest $request){
+    public function createProduct(CreateProductRequest $request)
+    {
 
         $product = new Product($request->all());
         $product->save();
@@ -77,7 +81,8 @@ class ProductController extends Controller
 
     }
 
-    public function updateProducts(Product $product, UpdateProductRequest $request){
+    public function updateProducts(Product $product, UpdateProductRequest $request)
+    {
 
         
         $product->update($request->all());
@@ -85,7 +90,8 @@ class ProductController extends Controller
 
     }
 
-    public function deleteProducts(Product $product){
+    public function deleteProducts(Product $product)
+    {
 
         $product->delete();
         return response()->json([],204);
@@ -100,7 +106,8 @@ class ProductController extends Controller
 		return response()->json(['product' => $product->load('Category')], 201);
 	}
 
-    public function updateProduct(Product $product, Request $request){
+    public function updateProduct(Product $product, Request $request)
+    {
 
          $requestAll = $request->all();
         $this->uploadImages($request, $product);
@@ -109,9 +116,11 @@ class ProductController extends Controller
         return response()->json(['product' => $product->refresh()->load('Category')],201);
     }
 
-    public function deleteProduct(Product $product){
+     public function deleteProduct(Product $product){
+
         $product->delete();
         return response()->json([],204);
+
     }
 
     private function uploadImages($request, &$product)
