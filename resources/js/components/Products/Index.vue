@@ -58,8 +58,8 @@ export default {
         },
         closeModal(){
             this.$refs.table.index()
-            this.$refs.table.datatable.destroy()
-            this.modal.hide()
+             // this.$refs.table.datatable.destroy()
+             this.modal.hide()
         },
         editProduct(product) {
 				this.product = product

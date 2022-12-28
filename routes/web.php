@@ -4,6 +4,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategorieController;
@@ -17,21 +18,33 @@ use App\Http\Controllers\Auth\ConfirmPasswordController;
 Route::get('/test',function (){
   
   // Para la asigniacion de roles de todos los users menos el primero que es admin
-    //  $users = User::get();
-    //  foreach( $users as $user){
-    //      if ($user->number_id == 1023302510) $user->assignRole('admin');
-    //      else $user->assignRole('user');
-    //  } 
+      //  $users = User::get();
+      //  foreach( $users as $user){
+      //      if ($user->number_id == 1023302510) $user->assignRole('admin');
+      //      else $user->assignRole('user');
+      //  } 
   //Creacion de roles...
-    // Role::create(['name' => 'user']);
-    // return Role::all()->pluck('name');
+      // Role::create(['name' => 'user']);
+      // return Role::all()->pluck('name');
+});
+
+
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group([
+  'prefix' => '', 'middlware' => ['auth','role:admin'],
+  'controller' => HomeController::class], 
+  function(){
+    Route::get('/home','index')->name('home');
 });
 
 Route::get('/', [ProductController::class, 'showHomeWithProducts'])->name('home');
 
 // Users
 Route::group([
-  'prefix' => 'Users', 'middlware' => ['auth','role:admin|role:user'],
+  'prefix' => 'Users', 'middlware' => ['auth','role:admin'],
   'controller' => UserController::class], 
   function(){
     Route::get('/','showAllUsers')->name('users');
@@ -45,7 +58,7 @@ Route::group([
 
 // Products
 Route::group([
-  'prefix' => 'Products','middlware' => ['auth','role:admin|role:user'],
+  'prefix' => 'Products','middlware' => ['auth','role:admin'],
   'controller' => ProductController::class], function(){
 
     Route::get('/','showProducts')->name('products');
@@ -120,4 +133,3 @@ Route::post('email/resend', 'resend')->name('verification.resend');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -107,7 +107,7 @@ export default {
         swal.fire({
           icon: 'success',
           title: 'Grandiso!',
-          text: 'Libro almacenado!',
+          text: 'Producto almacenado!',
         })
         this.$parent.closeModal()  //Llamar al papá con el $parent
       } catch (error) {

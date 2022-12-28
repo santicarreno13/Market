@@ -1,3 +1,4 @@
+@role('admin')
 @extends('layouts.app')
 
 @section('content')
@@ -15,9 +16,12 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <br>
+                    <a href="/" class="btn btn-primary">Ir a tienda</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+@endrole
