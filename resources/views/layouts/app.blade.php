@@ -66,9 +66,8 @@
 
                                 @endrole
 
-                                {{-- cart --}}
-                                <a class="dropdown-item" href="{{ route('cart') }}">Carrito</a>
                                 
+
                                 {{-- Logout --}}
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">Logout</a>

@@ -61,7 +61,7 @@
                       this.getCategory(button.getAttribute('data-id'))
                   }
                   if (button.getAttribute('role') == 'delete') {
-                      this.deletCategory(button.getAttribute('data-id'))
+                      this.deleteCategory(button.getAttribute('data-id'))
                   }
           },
           async getCategory(category_id){
@@ -82,7 +82,7 @@
                     confirmButtonText: 'Eliminar'
                 })
                 if (!result.isConfirmed) return
-                this.datatable.destroy()
+                // this.datatable.destroy()
                 await axios.delete(`Categories/DeleteACategory/${category_id}`)
                 this.index();
                 swal.fire({

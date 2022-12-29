@@ -64,7 +64,7 @@
                       this.getProduct(button.getAttribute('data-id'))
                   }
                   if (button.getAttribute('role') == 'delete') {
-                      this.deletProduct(button.getAttribute('data-id'))
+                      this.deleteProduct(button.getAttribute('data-id'))
                   }
           },
           async getProduct(product_id){
@@ -85,7 +85,7 @@
                     confirmButtonText: 'Eliminar'
                 })
                 if (!result.isConfirmed) return
-                this.datatable.destroy()
+                // this.datatable.destroy()
                 await axios.delete(`Products/DeleteAProduct/${product_id}`)
                 this.index();
                 swal.fire({
