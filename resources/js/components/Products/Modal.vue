@@ -19,6 +19,11 @@
             </div>
 
             <div class="mb-3">
+              <label for="price" class="form-label">Precio</label>
+              <input type="text" class="form-control" id="price" v-model="product.price">
+            </div>
+
+            <div class="mb-3">
               <label for="stock" class="form-label">Stock</label>
               <input type="number" class="form-control" id="title" v-model="product.stock">
             </div>
@@ -85,6 +90,7 @@ export default {
       const form_data = new FormData()
       if(this.file) form_data.append('image', this.file , this.file.name)
       form_data.append('title', this.product.title);
+      form_data.append('price', this.product.price);
       form_data.append('stock', this.product.stock);
       form_data.append('description', this.product.description);
       form_data.append('category_id', this.product.category_id);

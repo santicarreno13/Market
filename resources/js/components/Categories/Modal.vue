@@ -1,4 +1,5 @@
 <template>
+
     <div class="modal fade" id="category_modal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -53,10 +54,6 @@
         this.is_create = false
       },
   
-      loadImage(event){
-        this.file =event.target.files[0]
-      },
-  
       loadFormData(){
         const form_data = new FormData()
         form_data.append('name', this.category.name);
@@ -69,7 +66,7 @@
           if (this.is_create) {
             await axios.post('Categories/SaveCategory', category)
           } else {
-            await axios.post(`Categories/UpdateCategory/${this.Category.id}`, category)
+            await axios.post(`Categories/UpdateCategory/${this.category.id}`, category)
           }
           swal.fire({
             icon: 'success',

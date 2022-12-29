@@ -18,6 +18,7 @@ class ProductSeed extends Seeder
         
         DB::table('products')->insert([
             'category_id' => '1',
+            'price' => '4.000.000',
             'title' => 'Iphone 11',
             'image' => '',
             'stock' => '5',
@@ -25,6 +26,7 @@ class ProductSeed extends Seeder
         ]);
         DB::table('products')->insert([
             'category_id' => '2',
+            'price' => '50.000',
             'title' => 'Cubo Ruby ',
             'image' => '',
             'stock' => '3',
@@ -32,6 +34,7 @@ class ProductSeed extends Seeder
         ]);
         DB::table('products')->insert([
             'category_id' => '3',
+            'price' => '200.000',
             'title' => 'Mora ',
             'image' => '',
             'stock' => '2',

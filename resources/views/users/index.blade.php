@@ -1,5 +1,5 @@
 <x-app>
-
+@role('admin')
     <div class="card my-3">
         <div class="card-header d-flex justify-content-between">
             <h2>Users</h2>
@@ -41,5 +41,5 @@
         </div>
     </div>
 
-
+@endrole
 </x-app>

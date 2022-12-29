@@ -34,7 +34,7 @@ class CategorieController extends Controller
 				onclick='event.preventDefault();'
 				data-id='{$row->id}'
 				role='edit'
-				class='btn btn-warning btn-sm'>Edit</a>
+				class='btn btn-warning btn-sm'>Edit</a> 
 				<a
 				href='#'
 				onclick='event.preventDefault();'
@@ -95,12 +95,9 @@ class CategorieController extends Controller
 
     public function updateCategory(Category $category, Request $request)
     {
-
-         $requestAll = $request->all();
-        $this->uploadImages($request, $category);
-         $requestAll['image'] = $category->image;
+        $requestAll = $request->all();
         $category->update($requestAll);
-        return response()->json(['category' => $category->refresh()->load('Category')],201);
+        return response()->json(['category' => $category->refresh()],201);
     }
 
      public function deleteCategory(Category $category){

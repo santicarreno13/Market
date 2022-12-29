@@ -1,4 +1,5 @@
 <template>
+
     <table class="table table-dark table-striped" id="categoryTable" @click="getEvent">
                   <thead>
                       <tr>

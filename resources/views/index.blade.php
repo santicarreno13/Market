@@ -1,5 +1,5 @@
-<x-app title="Tienda">
 
+<x-app title="Tienda">
 
     <!-- {{-- A product --}} -->
 
@@ -67,4 +67,5 @@
         @endforeach
 
     </selection>
+
 </x-app>

@@ -43,10 +43,13 @@
                             {{-- products --}}
                             <a class="dropdown-item" href="{{ route('products') }}">Productos</a>
 
+                            {{-- Categories --}}
+                            <a class="dropdown-item" href="{{ route('categories') }}">Categorias</a>
+
                             @endrole
                             {{-- Logout --}}
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                          document.getElementById('logout-form').submit();">Logout</a>
+                                          document.getElementById('logout-form').submit();">Salir</a>
 
                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                              @csrf
@@ -60,9 +63,9 @@
         </div>
     </div>
 </nav>
+@role('admin')
 
-{{-- Dashboard --}}
-
+    {{-- Dashboard --}}
 
 <div class="container-fluid">
                 <div class="row">
@@ -78,3 +81,4 @@
 
                     </div>
 </div>
+@endrole

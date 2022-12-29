@@ -2,9 +2,10 @@
     <table class="table table-dark table-striped" id="productTable" @click="getEvent">
                   <thead>
                       <tr>
-                          <th >Titulo</th>
-                          <th >Stock</th>
-                          <th >Acciones</th>
+                          <th>Titulo</th>
+                          <th>Precio</th>
+                          <th>Stock</th>
+                          <th>Acciones</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -39,6 +40,7 @@
                       },
                       columns: [
                           { data: 'title' },
+                          { data: 'price' },
                           { data: 'stock' },
                           { data: 'action' },
                       ]

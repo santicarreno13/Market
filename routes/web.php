@@ -18,14 +18,14 @@ use App\Http\Controllers\Auth\ConfirmPasswordController;
 Route::get('/test',function (){
   
   // Para la asigniacion de roles de todos los users menos el primero que es admin
-      //  $users = User::get();
-      //  foreach( $users as $user){
-      //      if ($user->number_id == 1023302510) $user->assignRole('admin');
-      //      else $user->assignRole('user');
-      //  } 
+        // $users = User::get();
+        // foreach( $users as $user){
+        //     if ($user->number_id == 1023302510) $user->assignRole('admin');
+        //     else $user->assignRole('user');
+        // } 
   //Creacion de roles...
-      // Role::create(['name' => 'user']);
-      // return Role::all()->pluck('name');
+      //  Role::create(['name' => 'admin']);
+      //  return Role::all()->pluck('name');
 });
 
 
@@ -79,7 +79,7 @@ Route::group(['prefix' => 'Categories', 'controller' => CategorieController::cla
     Route::get('/GetAllCategoriesDataTable', 'getAllCategoriesForDataTable');
     Route::get('/GetACategory/{category}', 'getACategory');
     Route::post('/UpdateCategory/{category}', 'updateCategory');
-    Route::delete('/DeleteACategory/{category}', 'deleteCategory'); 
+    Route::delete('/DeletACategory/{category}', 'deleteCategory'); 
     
 });
 
