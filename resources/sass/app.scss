@@ -6,3 +6,105 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+
+/*MAIN*/
+.barra-lateral {
+	background: #252121;
+	color: #fff;
+	min-width: 250px;
+	min-height: 100vh;
+	padding: 0;
+	a {
+		color: #fff;
+	}
+	.menu {
+		a {
+			display: block;
+			padding: 20px;
+			font-family: Roboto, sans-serif;
+			font-weight: 500;
+			border-bottom: 1px solid rgba(255, 255, 255, .1);
+			&:hover {
+				background-color: #003C5D;
+				text-decoration: none;
+			}
+			i {
+				margin-right: 20px;
+			}
+		}
+		border-top: 5px #fff solid;
+	}
+}
+.active {
+	background: #003C5D;
+}
+.main {
+	padding-top: 40px;
+	.columna {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+}
+.formulariorecursos {
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.568);
+	border-radius: 10px;
+	padding: 20px;
+}
+.menu {
+	border-top: 5px #fff solid;
+}
+
+@media screen and (max-width:1300px) {
+	.barra-lateral {
+		min-width: auto;
+		.menu {
+			a {
+				span {
+					display: none;
+				}
+				i {
+					margin: 0;
+				}
+			}
+		}
+	}
+	.barra {
+		min-width: auto;
+	}
+	.dropdown-menu {
+		margin: 20px -79px 0px;
+	}
+}
+@media screen and (max-width:575px) {
+	.barra-lateral {
+		min-height: auto;
+		height: auto;
+		.menu {
+			a {
+				display: inline-block;
+				border-bottom: none;
+			}
+		}
+	}
+	.dropdown-menu {
+		margin: 20px -78px 0px;
+		margin: 20px -78 0px;
+	}
+	.logocppe {
+		width: 100%;
+	}
+	body {
+		background: #D3D3D3;
+		font-size: 16px;
+		overflow: visible;
+		font-size: 16px;
+		overflow: visible;
+	}
+	.barra-lateral.menu {
+		a {
+			display: inline-block;
+			border-bottom: none;
+		}
+	}
+}

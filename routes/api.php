@@ -28,7 +28,7 @@ Route::group(['prefix' => 'Categories', 'controller' => CategorieController::cla
     Route::post('/CreateCategorie', 'createCategorie');//->POST crea data
     Route::put('/UpdateCategories/{categorie}', 'updateCategories');//->PUT actualza data
     Route::delete('/DeleteCategories/{categorie}', 'deleteCategories');//->DELETE elimina data
-
+    Route::post('/SaveCategory', 'saveCategory');
 
 });
 

@@ -1,21 +1,13 @@
 <x-app>
-<section class="container">
 
-
-
-    <div class="card my-5">
+    <div class="card my-3">
         <div class="card-header d-flex justify-content-between">
             <h2>Users</h2>
             <a href="{{route('user.create')}}" class="btn btn-primary btn-sm">
                 Crear Usuario
             </a>
         </div>
-
         <div class="card-body">
-
-
-
-
             <table class="table table-dark table-striped my-4 mx-3">
                 <thead>
                     <tr>
@@ -48,5 +40,6 @@
             </table>
         </div>
     </div>
-</section>
+
+
 </x-app>

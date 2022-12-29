@@ -60,3 +60,21 @@
         </div>
     </div>
 </nav>
+
+{{-- Dashboard --}}
+
+
+<div class="container-fluid">
+                <div class="row">
+                    <div class="barra-lateral col-12 col-sm-auto">
+                        <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
+                            <a href="/Users"><i class="fas fa-home"></i><span>Usuarios</span></a>
+                            <a href="/Products"><i class="fas fa-home"></i><span>Productos</span></a>
+                            <a href="/Categories"><i class="fas fa-home"></i><span>Categorias</span></a>
+                            <a href="/logout"><i class="fas fa-home"></i><span>Salir</span></a>
+                        </nav>
+                    </div>
+                    {{-- Contenido --}}
+
+                    </div>
+</div>
