@@ -1,5 +1,5 @@
 <template> 
-    <div class="card mx-5 my-5">
+    <div class="card mx-5 my-5" style="margin-left:20em">
         <div class="card-header d-flex justify-content-between">
             <h2>Categoria</h2>
             <button @click="openModal" class="btn btn-primary">

@@ -16,7 +16,7 @@
                 
                 <div class="card-body align-items-center">
                     <h5 class="card-title align-items-center">{{$product->title}}</h5>
-                    <p class="card-text align-items-center">{{$product->description}}</p>
+                    <p class="card-text align-items-center">{{$product->price}}</p>
                     <a href="#" class="btn btn-primary">Comprar</a>
                 </div>
                 @endif
@@ -37,7 +37,7 @@
                 
                 <div class="card-body align-items-center">
                     <h5 class="card-title align-items-center">{{$product->title}}</h5>
-                    <p class="card-text align-items-center">{{$product->description}}</p>
+                    <p class="card-text align-items-center">{{$product->price}}</p>
                     <a href="#" class="btn btn-primary">Comprar</a>
                 </div>
                 @endif
@@ -59,7 +59,7 @@
                 
                 <div class="card-body align-items-center">
                     <h5 class="card-title align-items-center">{{$product->title}}</h5>
-                    <p class="card-text align-items-center">{{$product->description}}</p>
+                    <p class="card-text align-items-center">{{$product->price}}</p>
                     <a href="#" class="btn btn-primary">Comprar</a>
                 </div>
         @endif

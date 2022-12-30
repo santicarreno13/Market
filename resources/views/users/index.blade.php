@@ -1,6 +1,7 @@
 <x-app>
 @role('admin')
-    <div class="card my-3">
+ 
+    <div class="card my-3" >
         <div class="card-header d-flex justify-content-between">
             <h2>Users</h2>
             <a href="{{route('user.create')}}" class="btn btn-primary btn-sm">

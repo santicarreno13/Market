@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -24,9 +25,9 @@
 
 	  {{-- Content --}}
 		<main id="app">
-			<div class="container mt-4">
+			<!-- <div class="container mt-4"> -->
 				<x-alerts/>
-			</div>
+			<!-- </div> -->
 
 			{{$slot}}
 		</main>
