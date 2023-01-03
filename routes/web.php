@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\ShoppingCartDetailController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -19,13 +21,13 @@ Route::get('/test',function (){
   
   // Para la asigniacion de roles de todos los users menos el primero que es admin
         // $users = User::get();
-        // foreach( $users as $user){
-        //     if ($user->number_id == 1023302510) $user->assignRole('admin');
-        //     else $user->assignRole('user');
-        // } 
+        //   foreach( $users as $user){
+        //       if ($user->number_id == 1023302510) $user->assignRole('admin');
+        //       else $user->assignRole('user');
+        //   } 
   //Creacion de roles...
-      //  Role::create(['name' => 'admin']);
-      //  return Role::all()->pluck('name');
+        // Role::create(['name' => 'user']);
+        //  return Role::all()->pluck('name');
 });
 
 
@@ -82,6 +84,16 @@ Route::group(['prefix' => 'Categories', 'controller' => CategorieController::cla
     Route::delete('/DeletACategory/{category}', 'deleteCategory'); 
     
 });
+
+ Route::group(['prefix' => 'shopping_cart_detail', 'controller' => ShoppingCartDetailController::class], function(){
+
+   Route::post('/','store')->name('shopping_cart_details');
+
+  });
+
+
+    Route::get('/details/{product}', [ProductController::class,'details'])->name('details');
+
 
 
 Route::group(['controller' => LoginController::class], function(){

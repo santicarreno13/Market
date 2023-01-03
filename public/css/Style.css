@@ -1,5 +1,6 @@
 #app{
-    display: inline-block;
+    display: flex;
+    gap: 10px;
 }
 .table{
     max-width: 1280px;
@@ -9,3 +10,4 @@
     max-width: 250px;
     display: inline-block;
 }
+

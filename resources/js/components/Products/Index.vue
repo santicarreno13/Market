@@ -1,6 +1,6 @@
 
 <template> 
-    <div class="card mx-10 my-5" >
+    <div class="card" >
         <div class="card-header d-flex justify-content-between">
             <h2>Producto</h2>
             <button @click="openModal" class="btn btn-primary">
@@ -15,7 +15,6 @@
         </div>
         <section v-if="load_modal">
             <modal :product_data="product"/>
-
         </section>
     </div>
 </template>
@@ -40,7 +39,6 @@ export default {
     },
 
     methods: {
-        
         openModal(){
             this.load_modal = true
         setTimeout(() => {

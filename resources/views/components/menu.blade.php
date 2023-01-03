@@ -30,11 +30,17 @@
                         </li>
                     @endif
                 @else
+                <li class="nav-item dropdown">
+                    <a href="#" id="cart navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-shopping-cart"></i> Carrito <span class="badge">{{ $shopping_cart->quantity_of_products() }}</span></a>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        @include('layouts._mini_cart')
+                    </div>
+                </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->full_name }}
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @role('admin')
                             {{-- Users --}}
@@ -63,24 +69,3 @@
         </div>
     </div>
 </nav> 
-@role('admin')
-
-    {{-- Dashboard --}}
-
- <div class="menu-lateral container-fluid">
-                <div class="row">
-                    <div class="barra-lateral col-12 col-sm-auto">
-                        <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
-                            <a href="/Users"><i class="fas fa-home"></i><span>Usuarios</span></a>
-                            <a href="/Products"><i class="fas fa-home"></i><span>Productos</span></a>
-                            <a href="/Categories"><i class="fas fa-home"></i><span>Categorias</span></a>
-                            <a href="/logout"><i class="fas fa-home"></i><span>Salir</span></a>
-                        </nav>
-                    </div>
-                    {{-- Contenido --}}
-
-                    </div>
-</div>  
-
-    
-@endrole

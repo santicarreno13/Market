@@ -2,9 +2,10 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ShoppingCartDetailController;
 
 // Rutas User
 Route::group(['prefix' => 'Users', 'controller' => UserController::class], function(){
@@ -18,8 +19,17 @@ Route::group(['prefix' => 'Users', 'controller' => UserController::class], funct
 
 });
 
+// Route::resource('shopping_cart_detail', 'ShoppingCartDetailController')
+// ->only(['store','update','destroy'])
+// ->names('shopping_cart_details');
 
+Route::group(['prefix' => 'shopping_cart_detail', 'controller' => ShoppingCartDetailController::class], function(){
 
+    Route::post('/','store')
+   //  ->only(['store','update','destroy'])
+    ->name('shopping_cart_details');
+ 
+   });
 
 //Rutas Categories
 Route::group(['prefix' => 'Categories', 'controller' => CategorieController::class], function(){

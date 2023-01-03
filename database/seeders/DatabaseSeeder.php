@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             ProductSeed::class
         ]);
 
-        User::factory(20)->create();
+        User::factory(10)->create();
         Product::factory(6)->create();
 
         // \App\Models\User::factory(10)->create();

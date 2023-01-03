@@ -27,6 +27,7 @@
 		<main id="app">
 			<!-- <div class="container mt-4"> -->
 				<x-alerts/>
+			@include('components.sidebar')
 			<!-- </div> -->
 
 			{{$slot}}

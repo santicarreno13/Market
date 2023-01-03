@@ -58,25 +58,25 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                @role('admin')
-                                {{-- Users --}}
-                                <a class="dropdown-item" href="{{ route('users') }}">Usuarios</a>
+                            @role('admin')
+                            {{-- Users --}}
+                            <a class="dropdown-item" href="{{ route('users') }}">Usuarios</a>
 
-                                {{-- products --}}
-                                <a class="dropdown-item" href="{{ route('products') }}">Productos</a>
+                            {{-- products --}}
+                            <a class="dropdown-item" href="{{ route('products') }}">Productos</a>
 
-                                @endrole
+                            {{-- Categories --}}
+                            <a class="dropdown-item" href="{{ route('categories') }}">Categorias</a>
 
-                                
+                            @endrole
+                            {{-- Logout --}}
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">Salir</a>
 
-                                {{-- Logout --}}
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                          document.getElementById('logout-form').submit();">Logout</a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
+                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                             @csrf
+                         </form>
+                        </div>
 
                         </li>
                         @endguest

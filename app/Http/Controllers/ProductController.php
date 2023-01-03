@@ -14,6 +14,11 @@ class ProductController extends Controller
 {
 
 
+    public function details(Product $product)
+    {
+        return view('Products.details',compact('product'));
+    }
+
     public function showProducts()
     {
         return view('Products.index');
