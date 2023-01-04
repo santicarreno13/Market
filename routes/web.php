@@ -91,9 +91,20 @@ Route::group(['prefix' => 'Categories', 'controller' => CategorieController::cla
 
   });
 
+  // Route::group(['prefix' => 'shopping_cart_update', 'controller' => ShoppingCartController::class], function(){
 
-    Route::get('/details/{product}', [ProductController::class,'details'])->name('details');
+  //   Route::put('/','update')->name('shopping_cart_update');
+ 
+  //  });
 
+
+  Route::get('/shopping_cart_detail/{shopping_cart_detail}/destroy', [ShoppingCartDetailController::class,'destroy'])->name('shopping_cart_details.destroy');
+
+Route::post('/CartDetails', [ShoppingCartController::class,'update'])->name('shopping_cart.update');
+
+  Route::get('/details/{product}', [ProductController::class,'details'])->name('details');
+
+  Route::get('/alldetails', [ProductController::class,'alldetails'])->name('alldetails');
 
 
 Route::group(['controller' => LoginController::class], function(){

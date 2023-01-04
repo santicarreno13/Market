@@ -19,6 +19,11 @@ class ProductController extends Controller
         return view('Products.details',compact('product'));
     }
 
+    public function alldetails()
+    {
+        return view('Products.alldetails');
+        // ,compact('alldetails')
+    }
     public function showProducts()
     {
         return view('Products.index');
@@ -28,15 +33,25 @@ class ProductController extends Controller
     {
         $products = Product::with('Categories');
         $products = $this->getAllProducts()->original['products'];
-        return view('index', compact('products'));
+        $productstwo = $this->getAllProductstwo()->original['products'];
+        $productsthree = $this->getAllProductsthree()->original['products'];
+        return view('index', compact('products','productstwo','productsthree'));
     }
 
     public function getAllProducts()
     {
-      
-        $products = Product::get(); //With funciona mientras hace una consulta
+        $products = Product::where('category_id', 1)->take(3)->get(); //With funciona mientras hace una consulta
         return response()->json(['products' => $products],200);
-
+    }
+    public function getAllProductstwo()
+    {
+        $products = Product::where('category_id', 2)->take(3)->get(); //With funciona mientras hace una consulta
+        return response()->json(['products' => $products],200);
+    }
+    public function getAllProductsthree()
+    {
+        $products = Product::where('category_id', 3)->take(3)->get(); //With funciona mientras hace una consulta
+        return response()->json(['products' => $products],200);
     }
 
     public function getAllProductsForDataTable()
@@ -136,4 +151,5 @@ class ProductController extends Controller
 		$request->image->move(storage_path('app/public/images'), $image_name);
 		$product->image = $image_name;
 	}
+    
 }

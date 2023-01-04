@@ -16,9 +16,9 @@
       
       <li class="">
         @if($shopping_cart_detail->product->image)
-            <img src="/storage/images/{{ $shopping_cart_detail->product->image}}" class="card-img-top" alt="libro" style="width: 100px;">
+            <img src="/storage/images/{{ $shopping_cart_detail->product->image}}" class="card-img-top" alt="libro" style="width: 70px;">
         @else
-            <img src="https://cdn.lorem.space/images/watch/.cache/150x150/filip-baotic-FF8Kqb86V38-unsplash.jpg" class="card-img-top" alt="libro" style="width: 100px;">
+            <img src="https://cdn.lorem.space/images/watch/.cache/150x150/filip-baotic-FF8Kqb86V38-unsplash.jpg" class="card-img-top" alt="libro" style="width: 70px;">
         @endif
         <span class="item-name">{{ $shopping_cart_detail->product->title}}</span>
         <span class="item-price">{{ $shopping_cart_detail->product->price}}</span>
@@ -26,5 +26,5 @@
 @endforeach
     </ul>
 
-    <a href="#" class="button">Comprar</a>
+    <a href="{{ route('alldetails') }}" class="button">Comprar</a>
   </div>

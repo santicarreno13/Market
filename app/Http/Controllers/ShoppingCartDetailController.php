@@ -20,14 +20,18 @@ class ShoppingCartDetailController extends Controller
         //  dd($shopping_cart->id);
     }
  
+    
+    
+
     public function update(Request $request, ShoppingCartDetail $shoppingCartDetail)
     {
-        //
+        
     }
 
    
     public function destroy(ShoppingCartDetail $shoppingCartDetail)
     {
-        //
+        $shoppingCartDetail->delete();
+        return back();
     }
 }
